@@ -1,5 +1,3 @@
-require 'mongoid'
-
 module Acts
   module Sluggable
     module ClassMethods
