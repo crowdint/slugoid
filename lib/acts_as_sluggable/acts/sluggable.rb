@@ -11,6 +11,11 @@ module Acts
           end
           field(slug_field_name, :type => String) unless self.respond_to?(slug_field_name)
           index(slug_field_name)
+          alias_method :to_param!, :to_param
+        end
+
+        define_method("to_param") do
+          self.send(slug_field_name)
         end
       end
     end

@@ -31,8 +31,15 @@ class TestActsAsSluggable < Test::Unit::TestCase
     setup do
       @project = Project.create(:name => 'Some name')
     end
+
     should "create a slug" do
       assert_equal('some-name', @project.slug)
+    end
+
+    context :to_param do
+      should "return the slug too" do
+        assert_equal('some-name', @project.to_param)        
+      end
     end
   end
 
@@ -43,6 +50,12 @@ class TestActsAsSluggable < Test::Unit::TestCase
 
     should "create a slug using the custom field and store it on the custom slug field" do
       assert_equal('some-other-name', @organization.alternative_slug)
+    end
+
+    context :to_param do
+      should "return the slug too" do
+        assert_equal('some-other-name', @organization.to_param)        
+      end
     end
   end
 
