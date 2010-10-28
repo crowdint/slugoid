@@ -13,7 +13,7 @@ So far it works with the Rails 3 version of Mongoid.
 
 ## Rails 3
 
-Include it on your Gemfile:
+Include it in your Gemfile:
 
     gem 'acts_as_sluggable'
 
@@ -23,7 +23,7 @@ And run bundler
 
 # Usage
 
-To use it, all you have to do is declare it on your Mongoid::Document
+To use it, all you have to do is call *acts_as_sluggable* in your Mongoid::Document
 
     class Project
       include Mongoid::Document
@@ -36,7 +36,7 @@ a field called :name.
 
 ## Options
 
-### generate_from
+### :generate_from
 
 If you want to change the field to generate the slug you can use the :generate_from option:
 
@@ -49,7 +49,7 @@ If you want to change the field to generate the slug you can use the :generate_f
 
 This will generate the slug form a field called :alternative_name.
 
-### store_as
+### :store_as
 
 If you want to change the field where the slug is stored you can use the :store_as option:
 
@@ -64,7 +64,7 @@ Now it will store the slug in a field called :alternative_slug. If the specified
 on the Document it will be automatically declared, so adding:
 
     field :alternative_slug
-    
+
 is optional.
 
 # About the Author
