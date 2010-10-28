@@ -2,7 +2,7 @@ require 'test_helper'
 
 class Project
   include Mongoid::Document
-  include Acts::Sluggable
+  # include Acts::Sluggable
   
   acts_as_sluggable
 

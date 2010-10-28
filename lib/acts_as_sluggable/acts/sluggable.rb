@@ -4,25 +4,25 @@ module Acts
       #
       # Adds the logic to generate the slug
       #
-      def acts_as_sluggable(method = :name)
+      def acts_as_sluggable(method = :name, slug_field_name = :slug)
         class_eval do
           before_save do
-            generate_slug(method)
+            generate_slug(method, slug_field_name)
           end
-          field :slug, :type => String
-          index(method)
+          field(slug_field_name, :type => String)
+          index(slug_field_name)
         end
       end
     end
 
     module InstanceMethods
-      def generate_slug(method)
-        self.slug = self.send(method).parameterize
+      def generate_slug(method, slug_field_name)
+        self.send("#{slug_field_name.to_s}=", self.send(method).parameterize)
       end
     end
 
     def self.included(receiver)
-      receiver.extend         ClassMethods
+      receiver::ClassMethods.send :include, ClassMethods
       receiver.send :include, InstanceMethods
     end
   end
