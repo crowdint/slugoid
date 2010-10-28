@@ -4,18 +4,31 @@ module Acts
       #
       # Adds the logic to generate the slug
       #
-      def acts_as_sluggable(method = :name, slug_field_name = :slug)
+      # Options:
+      #
+      #   :generate_from
+      #       The name of the field used to generate the slug
+      #
+      #   :store_as
+      #       The name of the field where the slug will be stored
+      #
+      def acts_as_sluggable(options = {})
+        options = {
+          :generate_from => :name,
+          :store_as => :slug
+        }.merge(options)
+
         class_eval do
           before_save do
-            generate_slug(method, slug_field_name)
+            generate_slug(options[:generate_from], options[:store_as])
           end
-          field(slug_field_name, :type => String) unless self.respond_to?(slug_field_name)
-          index(slug_field_name)
+          field(options[:store_as], :type => String) unless self.respond_to?(options[:store_as])
+          index(options[:store_as])
           alias_method :to_param!, :to_param
         end
 
         define_method("to_param") do
-          self.send(slug_field_name)
+          self.send(options[:store_as])
         end
       end
     end

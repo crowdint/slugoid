@@ -11,7 +11,7 @@ end
 class Organization
   include Mongoid::Document
 
-  acts_as_sluggable :alternative_name, :alternative_slug
+  acts_as_sluggable :generate_from => :alternative_name, :store_as => :alternative_slug
 
   field :alternative_name, :type => String
   field :alternative_slug, :type => String
