@@ -9,7 +9,7 @@ module Acts
           before_save do
             generate_slug(method, slug_field_name)
           end
-          field(slug_field_name, :type => String)
+          field(slug_field_name, :type => String) unless self.respond_to?(slug_field_name)
           index(slug_field_name)
         end
       end
