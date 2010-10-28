@@ -13,23 +13,35 @@ module Acts
       #       The name of the field where the slug will be stored
       #
       def acts_as_sluggable(options = {})
-        options = {
+        @acts_as_sluggable_options = {
           :generate_from => :name,
           :store_as => :slug
         }.merge(options)
 
+        generate_from = @acts_as_sluggable_options[:generate_from]
+        store_as = @acts_as_sluggable_options[:store_as]
+
         class_eval do
           before_save do
-            generate_slug(options[:generate_from], options[:store_as])
+            generate_slug(generate_from, store_as)
           end
-          field(options[:store_as], :type => String) unless self.respond_to?(options[:store_as])
-          index(options[:store_as])
+
+          field(store_as, :type => String) unless self.respond_to?(store_as)
+          index(store_as)
           alias_method :to_param!, :to_param
         end
 
         define_method("to_param") do
-          self.send(options[:store_as])
+          self.send(store_as)
         end
+      end
+
+      def acts_as_sluggable_options
+        @acts_as_sluggable_options
+      end
+
+      def find_by_slug(slug)
+        where(@acts_as_sluggable_options[:store_as] => slug).first
       end
     end
 

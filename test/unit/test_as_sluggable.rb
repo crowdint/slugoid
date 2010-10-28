@@ -41,6 +41,12 @@ class TestActsAsSluggable < Test::Unit::TestCase
         assert_equal('some-name', @project.to_param)        
       end
     end
+
+    context :find_by_slug do
+      should "find the object" do
+        assert_equal(@project, Project.find_by_slug(@project.to_param))
+      end
+    end
   end
 
   context "custom parameters" do
@@ -56,6 +62,23 @@ class TestActsAsSluggable < Test::Unit::TestCase
       should "return the slug too" do
         assert_equal('some-other-name', @organization.to_param)        
       end
+    end
+
+    context :find_by_slug do
+      should "find the object" do
+        assert_equal(@organization, Organization.find_by_slug(@organization.to_param))
+      end
+    end
+  end
+
+  context :acts_as_sluggable_options do
+    should "respond to acts_as_sluggable_options" do
+      assert_equal(true, Project.respond_to?(:acts_as_sluggable_options))
+    end
+
+    should "return the options for acts_as_sluggable" do
+      assert_equal(:name, Project.acts_as_sluggable_options[:generate_from])
+      assert_equal(:slug, Project.acts_as_sluggable_options[:store_as])
     end
   end
 
