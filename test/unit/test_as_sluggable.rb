@@ -27,6 +27,13 @@ class TestActsAsSluggable < Test::Unit::TestCase
     end
   end
 
+  def methods_per_model_assert(expected, model)
+    [:find_by_slug, :find].each do |method|
+      assert_equal(expected, model.send(method, expected.to_param))
+    end
+  end
+
+
   context "default parameters" do
     setup do
       @project = Project.create(:name => 'Some name')
@@ -42,9 +49,9 @@ class TestActsAsSluggable < Test::Unit::TestCase
       end
     end
 
-    context :find_by_slug do
+    context :using_finders do
       should "find the object" do
-        assert_equal(@project, Project.find_by_slug(@project.to_param))
+        methods_per_model_assert @project, Project
       end
     end
   end
@@ -64,9 +71,9 @@ class TestActsAsSluggable < Test::Unit::TestCase
       end
     end
 
-    context :find_by_slug do
+    context :using_finders do
       should "find the object" do
-        assert_equal(@organization, Organization.find_by_slug(@organization.to_param))
+        methods_per_model_assert @organization, Organization
       end
     end
   end
