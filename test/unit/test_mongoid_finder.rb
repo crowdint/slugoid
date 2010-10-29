@@ -1,38 +1,31 @@
 require 'test_helper'
 
-class Flower
-  include Mongoid::Document
-end
+module Acts::Sluggable::Test
 
-class Ramona
-  include Mongoid::Document
-  
-  acts_as_sluggable
-  
-  field :name
-end
+  class TestMongoidFinder < Test::Unit::TestCase
 
-class TestMongoidFinder < Test::Unit::TestCase
-  def setup
-    @ramona = Ramona.create!(:name => 'Scott')
-    @flower = Flower.create!
-  end
+    include Config
+    alias :setup! :setup
 
-  context "find" do
-    should "return the objects when you pass the id" do
-      assert_equal(@ramona, Ramona.find(@ramona.to_param))
-      assert_equal(@flower, Flower.find(@flower.id))
+    def setup
+      setup!
+      @sluggable_project = SluggableProject.create!(:name => 'Scott')
+      @project = Project.create!
     end
-  end
 
-  context "explicit find by id" do
-    should "return the object" do
-      assert_equal(@ramona, Ramona.where(:_id => @ramona.id).first)
-      assert_equal(@ramona, Ramona.find(:first, :conditions => {:_id => @ramona.id}))
+    context "find" do
+      should "return the objects when you pass the id" do
+        assert_equal(@sluggable_project, SluggableProject.find(@sluggable_project.to_param))
+        assert_equal(@project, Project.find(@project.id))
+      end
     end
-  end
 
-  def teardown
-    ::Mongoid.master.collections.select {|c| c.name !~ /system/ }.each(&:drop)
+    context "explicit find by id" do
+      should "return the object" do
+        assert_equal(@sluggable_project, SluggableProject.where(:_id => @sluggable_project.id).first)
+        assert_equal(@sluggable_project, SluggableProject.find(:first, :conditions => {:_id => @sluggable_project.id}))
+      end
+    end
+
   end
 end
