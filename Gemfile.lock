@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    acts_as_sluggable (0.0.2)
+    acts_as_sluggable (0.0.3)
       mongoid (>= 2.0.0.beta.17)
 
 GEM
