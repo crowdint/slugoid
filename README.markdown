@@ -67,6 +67,25 @@ on the Document it will be automatically declared, so adding:
 
 is optional.
 
+## find
+
+To make things transparent and easy, by default, the find method of the acts_as_sluggable Documents will look for the object by the slug, not the id.
+
+So, if you had the Project class configured as the example above:
+
+    @project = Project.create(:name => "Name")
+
+    Project.find(@project.to_param)                               #=> @project
+
+If, for any reason, you have to look for the object using its id, you have to be explicit:
+
+    @project = Project.create(:name => "Name")
+
+    Project.find(:first, :conditions => {:_id => @project.id})    #=> @project
+    Project.where(:_id => @project.id)                            #=> @project
+
+The *find* behavior for the other Mongoid::Documents remains the same.
+
 # About the Author
 
 [Crowd Interactive](http://www.crowdint.com) is an American web design and development company that happens to work in Colima, Mexico. 
