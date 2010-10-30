@@ -6,8 +6,8 @@ Gem::Specification.new do |s|
   s.name        = "acts_as_sluggable"
   s.version     = Acts::Sluggable::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["David Padilla"]
-  s.email       = ["david@crowdint.com"]
+  s.authors     = ["David Padilla", "Emmanuel Delgado"]
+  s.email       = ["david@crowdint.com", "emmanuel@crowdint.com"]
   s.homepage    = "http://rubygems.org/gems/acts_as_sluggable"
   s.summary     = %q{Create a slug for mongoid documents}
   s.description = %q{Create a slug for mongoid documents}
