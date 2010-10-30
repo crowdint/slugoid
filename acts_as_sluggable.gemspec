@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.authors     = ["David Padilla", "Emmanuel Delgado"]
   s.email       = ["david@crowdint.com", "emmanuel@crowdint.com"]
   s.homepage    = "http://rubygems.org/gems/acts_as_sluggable"
-  s.summary     = %q{Create a slug for mongoid documents}
-  s.description = %q{Create a slug for mongoid documents}
+  s.summary     = %q{Drop-in solution to pretty urls when using Mongoid}
+  s.description = %q{Drop-in solution to pretty urls when using Mongoid}
 
   s.add_dependency('mongoid', '>= 2.0.0.beta.17')
   s.add_development_dependency('shoulda', '~>2.11.3')
