@@ -1,8 +1,8 @@
 require 'test_helper'
 
-module Acts::Sluggable::Test
+module Acts::Slugoid::Test
 
-  class TestActsAsSluggable < Test::Unit::TestCase
+  class TestSlugoid < Test::Unit::TestCase
 
     include Config 
 
@@ -14,22 +14,22 @@ module Acts::Sluggable::Test
 
     context "default parameters" do
       setup do
-        @sluggable_project = SluggableProject.create(:name => 'Some name')
+        @slugoid_project = SlugoidProject.create(:name => 'Some name')
       end
 
       should "create a slug" do
-        assert_equal('some-name', @sluggable_project.slug)
+        assert_equal('some-name', @slugoid_project.slug)
       end
 
       context :to_param do
         should "return the slug too" do
-          assert_equal('some-name', @sluggable_project.to_param)        
+          assert_equal('some-name', @slugoid_project.to_param)        
         end
       end
 
       context :using_finders do
         should "find the object" do
-          methods_per_model_assert @sluggable_project, SluggableProject
+          methods_per_model_assert @slugoid_project, SlugoidProject
         end
       end
     end
@@ -45,7 +45,7 @@ module Acts::Sluggable::Test
 
       context :to_param do
         should "return the slug too" do
-          assert_equal('some-other-name', @organization.to_param)        
+          assert_equal('some-other-name', @organization.to_param)
         end
       end
 
@@ -56,14 +56,14 @@ module Acts::Sluggable::Test
       end
     end
 
-    context :acts_as_sluggable_options do
-      should "respond to acts_as_sluggable_options" do
-        assert_equal(true, SluggableProject.respond_to?(:acts_as_sluggable_options))
+    context :acts_as_slugoid_options do
+      should "respond to acts_as_slugoid_options" do
+        assert_equal(true, SlugoidProject.respond_to?(:acts_as_slugoid_options))
       end
 
-      should "return the options for acts_as_sluggable" do
-        assert_equal(:name, SluggableProject.acts_as_sluggable_options[:generate_from])
-        assert_equal(:slug, SluggableProject.acts_as_sluggable_options[:store_as])
+      should "return the options for acts_as_slugoid" do
+        assert_equal(:name, SlugoidProject.acts_as_slugoid_options[:generate_from])
+        assert_equal(:slug, SlugoidProject.acts_as_slugoid_options[:store_as])
       end
     end
 

@@ -3,15 +3,15 @@ require 'test/unit'
 require 'bundler/setup'
 require 'shoulda'
 require 'mongoid'
-require 'acts_as_sluggable'
+require 'slugoid'
 
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 
-module Acts::Sluggable::Test
+module Acts::Slugoid::Test
   module Config
     def setup
       ::Mongoid.configure do |config|
-        name = "acts_as_sluggable_test"
+        name = "slugoid_test"
         host = "localhost"
         config.master = Mongo::Connection.new.db(name)
         config.logger = nil
@@ -29,16 +29,16 @@ class Project
   field :name, :type => String
 end
 
-class SluggableProject
+class SlugoidProject
   include Mongoid::Document
   field :name, :type => String
-  acts_as_sluggable
+  acts_as_slugoid
 end
 
 class Organization
   include Mongoid::Document
 
-  acts_as_sluggable :generate_from => :alternative_name, :store_as => :alternative_slug
+  acts_as_slugoid :generate_from => :alternative_name, :store_as => :alternative_slug
 
   field :alternative_name, :type => String
   field :alternative_slug, :type => String
