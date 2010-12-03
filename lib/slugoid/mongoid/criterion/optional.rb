@@ -9,14 +9,14 @@ module Mongoid::Criterion::Optional
   #
   alias :id! :id
   def id(*ids)
-    if @klass.respond_to?(:acts_as_sluggable_options)
+    if @klass.respond_to?(:acts_as_slugoid_options)
       ids.flatten!
       if ids.size > 1
         self.in(
-        @klass.acts_as_sluggable_options[:store_as] => ::BSON::ObjectId.cast!(@klass, ids, @klass.primary_key.nil?)
+        @klass.acts_as_slugoid_options[:store_as] => ::BSON::ObjectId.cast!(@klass, ids, @klass.primary_key.nil?)
         )
       else
-        @selector[@klass.acts_as_sluggable_options[:store_as]] = ids.first
+        @selector[@klass.acts_as_slugoid_options[:store_as]] = ids.first
       end
       self
     else

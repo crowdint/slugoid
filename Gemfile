@@ -1,4 +1,4 @@
 source "http://rubygems.org"
 
-# Specify your gem's dependencies in acts_as_sluggable.gemspec
+# Specify your gem's dependencies in slugoid.gemspec
 gemspec

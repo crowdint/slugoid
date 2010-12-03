@@ -1,14 +1,14 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "acts_as_sluggable/version"
+require "slugoid/version"
 
 Gem::Specification.new do |s|
-  s.name        = "acts_as_sluggable"
-  s.version     = Acts::Sluggable::VERSION
+  s.name        = "slugoid"
+  s.version     = Acts::Slugoid::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["David Padilla", "Emmanuel Delgado"]
   s.email       = ["david@crowdint.com", "emmanuel@crowdint.com"]
-  s.homepage    = "http://rubygems.org/gems/acts_as_sluggable"
+  s.homepage    = "http://rubygems.org/gems/slugoid"
   s.summary     = %q{Drop-in solution to pretty urls when using Mongoid}
   s.description = %q{Drop-in solution to pretty urls when using Mongoid}
 
@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency('shoulda', '~>2.11.3')
   s.add_development_dependency('bson_ext', '~>1.1.1')
 
-  s.rubyforge_project = "acts_as_sluggable"
+  s.rubyforge_project = "slugoid"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")

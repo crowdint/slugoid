@@ -1,5 +1,5 @@
 module Acts
-  module Sluggable
+  module Slugoid
     module ClassMethods
       #
       # Adds the logic to generate the slug
@@ -12,14 +12,14 @@ module Acts
       #   :store_as
       #       The name of the field where the slug will be stored
       #
-      def acts_as_sluggable(options = {})
-        @acts_as_sluggable_options = {
+      def acts_as_slugoid(options = {})
+        @acts_as_slugoid_options = {
           :generate_from => :name,
           :store_as => :slug
           }.merge(options)
 
-          generate_from = @acts_as_sluggable_options[:generate_from]
-          store_as = @acts_as_sluggable_options[:store_as]
+          generate_from = @acts_as_slugoid_options[:generate_from]
+          store_as = @acts_as_slugoid_options[:store_as]
 
           class_eval do
             before_save do
@@ -32,12 +32,12 @@ module Acts
 
             include InstanceMethods
 
-            def self.acts_as_sluggable_options
-              @acts_as_sluggable_options
+            def self.acts_as_slugoid_options
+              @acts_as_slugoid_options
             end
 
             def self.find_by_slug(slug)
-              where(@acts_as_sluggable_options[:store_as] => slug).first
+              where(@acts_as_slugoid_options[:store_as] => slug).first
             end
           end
 
