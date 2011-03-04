@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency('mongoid', '>= 2.0.0.beta.17')
   s.add_development_dependency('shoulda', '~>2.11.3')
-  s.add_development_dependency('bson_ext', '~>1.1.1')
+  s.add_development_dependency('bson_ext', '~>1.2.4')
 
   s.rubyforge_project = "slugoid"
 
