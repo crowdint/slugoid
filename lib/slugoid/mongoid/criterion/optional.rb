@@ -7,20 +7,20 @@ module Mongoid::Criterion::Optional
   #
   #   where(:_id => some_id)
   #
-  alias :id! :id
-  def id(*ids)
+  alias :for_ids! :for_ids
+  def for_ids(*ids)
     unless ids.first.is_a?(BSON::ObjectId)
       ids.flatten!
       if ids.size > 1
         self.in(
-        @klass.acts_as_slugoid_options[:store_as] => ::BSON::ObjectId.cast!(@klass, ids, @klass.primary_key.nil?)
+          @klass.acts_as_slugoid_options[:store_as] => ::BSON::ObjectId.cast!(@klass, ids, @klass.primary_key.nil?)
         )
       else
         @selector[@klass.acts_as_slugoid_options[:store_as]] = ids.first
       end
       self
     else
-      id!(*ids)
+      for_ids!(*ids)
     end
   end
 end
