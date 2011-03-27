@@ -9,7 +9,7 @@ module Mongoid::Criterion::Optional
   #
   alias :id! :id
   def id(*ids)
-    if @klass.respond_to?(:acts_as_slugoid_options)
+    unless ids.first.is_a?(BSON::ObjectId)
       ids.flatten!
       if ids.size > 1
         self.in(

@@ -16,7 +16,7 @@ module Acts::Slugoid::Test
     context "find" do
       should "return the objects when you pass the id" do
         assert_equal(@slugoid_project, SlugoidProject.find(@slugoid_project.to_param))
-        assert_equal(@project, Project.find(@project.id))
+        assert_equal(@slugoid_project, SlugoidProject.find(@slugoid_project.id))
       end
     end
 
