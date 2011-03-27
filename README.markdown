@@ -9,6 +9,14 @@ This gem will help you generate slugs in an easy way
 
 So far it works with the Rails 3 version of Mongoid.
 
+### Attention
+
+If you're using mongoid 2.0.0.rc.7 or less, you need to use version
+*0.0.5*
+
+When mongoid 2.0.0.rc.8 was released there was a change that prevented
+backwards compatibility.
+
 # Installation
 
 ## Rails 3
