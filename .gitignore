@@ -3,3 +3,4 @@ pkg/*
 .bundle
 .rvmrc
 .DS_Store
+Gemfile.lock
